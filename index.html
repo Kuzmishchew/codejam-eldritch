@@ -15,19 +15,46 @@
         <div class="ancient-card" id="shubNiggurath"></div>
     </div>
     <div class="difficulty-container">
+        <h2 class="difficulty-header">Выберите сложность</h2>
         <form action="" class="difficulty-setter">
-            <input class="difficulty-level-radio" id="very-easy" type="radio" name="difficulty-level"><label for="very-easy">Очень легкий</label>
-            <input class="difficulty-level-radio" id="easy" type="radio" name="difficulty-level"><label for="easy">Легкий</label>
-            <input class="difficulty-level-radio" id="medium" type="radio" name="difficulty-level"><label for="easy">Средний</label>
-            <input class="difficulty-level-radio" id="hard" type="radio" name="difficulty-level"><label for="easy">Высокий</label>
-            <input class="difficulty-level-radio" id="very-hard" type="radio" name="difficulty-level"><label for="very-hard">Очень высокий</label>
+            <label for="very-easy"><input class="difficulty-level-radio" id="very-easy" type="radio" name="difficulty-level">Очень легкий</label>
+            <label for="easy"><input class="difficulty-level-radio" id="easy" type="radio" name="difficulty-level">Легкий</label>
+            <label for="easy"><input class="difficulty-level-radio" id="medium" type="radio" name="difficulty-level">Средний</label>
+            <label for="easy"><input class="difficulty-level-radio" id="hard" type="radio" name="difficulty-level">Высокий</label>
+            <label for="very-hard"><input class="difficulty-level-radio" id="very-hard" type="radio" name="difficulty-level">Очень высокий</label>
         </form>
     </div>
     <div class="deck-container">
-        <div class="phase-container"></div>
+        <div class="mix-button">Замешать колоду</div>
+        <div class="phase-container">
+            <div class="phase-tracker phase-tracker-active">
+                <h3 class="phase-name">Первая стадия</h3>
+                <div class="phase-cards">
+                    <div class="phase-card phase-green"></div>                    
+                    <div class="phase-card phase-brown"></div>
+                    <div class="phase-card phase-blue"></div>
+                </div>
+            </div>
+            <div class="phase-tracker">
+                <h3 class="phase-name">Вторая стадия</h3>
+                <div class="phase-cards">
+                    <div class="phase-card phase-green"></div>                    
+                    <div class="phase-card phase-brown"></div>
+                    <div class="phase-card phase-blue"></div>
+                </div>
+            </div>
+            <div class="phase-tracker">
+                <h3 class="phase-name">Третья стадия</h3>
+                <div class="phase-cards">
+                    <div class="phase-card phase-green"></div>                    
+                    <div class="phase-card phase-brown"></div>
+                    <div class="phase-card phase-blue"></div>
+                </div>
+            </div>
+        </div>
         <div class="deck">
-            <div class="unflip-card"></div>
-            <div class="current-card"></div>
+            <div class="deck-card unflip-card"></div>
+            <div class="deck-card current-card"></div>
         </div>
     </div>
 </body>
