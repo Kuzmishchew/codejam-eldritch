@@ -25,6 +25,7 @@ body {
     height: 20vw;
 
     border: 1px solid white;
+    background-size: cover;
 }
 
 .difficulty-container {
