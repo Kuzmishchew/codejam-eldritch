@@ -44,11 +44,16 @@ function getCardSet() {
     let greenDeck = [];
 
     if (currentDifficult = 'very-easy') {
-        greenCardsData.forEach(card => {
-            if (card.difficulty == 'easy') {
-                greenDeck.push(card);
-            }
-        });
+        let srcDeck = [].concat(greenCardsData);
+        for (let i = 1; i <= greenSum; i++) {
+            let currentCard = getRandomCard(srcDeck, 'easy');
+            greenDeck.push(currentCard);
+        }
+        // greenCardsData.forEach(card => {
+        //     if (card.difficulty == 'easy') {
+        //         greenDeck.push(card);
+        //     }
+        // });
     }
     
 
@@ -58,9 +63,24 @@ function getCardSet() {
 //    console.log(`Коричнивые: ${brownSum}`);     
 }
 
-function selectCard() {
+function getRandomCard(srcDeck, difficulty = false) {
+    let randomId = Math.floor(Math.random() * srcDeck.length);
+    let card = {};
 
+    if (difficulty) {
+        if (srcDeck[randomId]['difficulty'] == difficulty) {            
+            Object.assign(card, srcDeck[randomId]);
+            srcDeck.splice(randomId, 1);
+        } else {
+            card = getRandomCard(srcDeck, difficulty);
+        }
+    } else {
+        Object.assign(card, srcDeck[randomId]);
+        srcDeck.splice(randomId, 1);
+    }
+    return card;
 }
+
 showAncient();
 DIFFICLUTIES_INPUTS.forEach(element => {
     element.addEventListener('input', () => selectDifficulty(element.value));
