@@ -1,6 +1,9 @@
 import ancientsData from '../data/ancients.js';
 
+const DIFFICLUTIES_INPUTS = document.getElementsByName('difficulty-level');
+
 let currentAncient = {};
+let currentDifficult = '';
 
 function showAncient() {
     ancientsData.forEach(element => {
@@ -19,4 +22,15 @@ function selectAnciant(element) {
     console.log(currentAncient);
 }
 
+function selectDifficulty(value) {
+    currentDifficult = '';
+    currentDifficult = value;
+
+    //DEBUG
+    console.log(currentDifficult);
+}
+
 showAncient();
+DIFFICLUTIES_INPUTS.forEach(element => {
+    element.addEventListener('input', () => selectDifficulty(element.value));
+});
