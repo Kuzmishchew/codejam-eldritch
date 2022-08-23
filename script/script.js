@@ -60,7 +60,11 @@ function getCardSet() {
         //     let currentCard = restCardCount != 0 ? getRandomCard(srcDeck, 'easy') : getRandomCard(srcDeck, 'normal');
         //     greenDeck.push(currentCard);
         // }
-
+    } 
+    if (currentDifficult = 'easy') {
+        greenDeck = getEasyDeck(greenCardsData, greenSum);
+        blueDeck = getEasyDeck(blueCardsData, blueSum);
+        brownDeck = getEasyDeck(brownCardsData, brownSum);
     }
     
 
@@ -104,6 +108,22 @@ function getVeryEasyDeck(colorCardsData, cardsSum) {
         resultDeck.push(currentCard);
     }
 
+    return resultDeck;
+}
+function getEasyDeck(colorCardsData, cardsSum) {
+    let resultDeck = [];
+    let srcDeck = [];
+    colorCardsData.forEach((element, id) => {
+        if (element.difficulty != 'hard') {
+            let card = Object.assign({}, element);
+            srcDeck.push(card);
+        }
+    });
+
+    for (let i = 1; i <= cardsSum; i++) {        
+        let currentCard = getRandomCard(srcDeck);
+        resultDeck.push(currentCard);
+    }
     return resultDeck;
 }
 
