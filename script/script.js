@@ -1,9 +1,22 @@
-import ancients from '../assets/Ancients/index.js';
+import ancientsData from '../data/ancients.js';
+
+let currentAncient = {};
 
 function showAncient() {
-    for (let key in ancients) {
-        document.getElementById(key).style.backgroundImage = `url(${ancients[key]}`;
-    }
+    ancientsData.forEach(element => {
+        let cardFace = document.getElementById(element.id);
+        cardFace.style.backgroundImage = `url(${element.cardFace}`;
+
+        cardFace.addEventListener('click', () => selectAnciant(element));
+    });
+}
+
+function selectAnciant(element) {
+    currentAncient = {};
+    Object.assign(currentAncient, element);
+
+    //DEBUG
+    console.log(currentAncient);
 }
 
 showAncient();
