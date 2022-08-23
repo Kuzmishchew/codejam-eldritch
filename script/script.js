@@ -31,7 +31,7 @@ function selectDifficulty(value) {
     currentDifficult = '';
     currentDifficult = value;
 
-    getCardSet();
+    // getCardSet();
     //DEBUG
     console.log(currentDifficult);
 }
@@ -41,13 +41,26 @@ function getCardSet() {
     let blueSum = currentAncient.firstStage.blueCards + currentAncient.secondStage.blueCards + currentAncient.thirdStage.blueCards;
     let brownSum = currentAncient.firstStage.brownCards + currentAncient.secondStage.brownCards + currentAncient.thirdStage.brownCards;
 
+    let greenDeck = [];
+
+    if (currentDifficult = 'very-easy') {
+        greenCardsData.forEach(card => {
+            if (card.difficulty == 'easy') {
+                greenDeck.push(card);
+            }
+        });
+    }
+    
 
    //DEBUG
-   console.log(`Зеленые: ${greenSum}`); 
-   console.log(`Синие: ${blueSum}`); 
-   console.log(`Коричнивые: ${brownSum}`);     
+   console.log(greenDeck); 
+//    console.log(`Синие: ${blueSum}`);
+//    console.log(`Коричнивые: ${brownSum}`);     
 }
 
+function selectCard() {
+
+}
 showAncient();
 DIFFICLUTIES_INPUTS.forEach(element => {
     element.addEventListener('input', () => selectDifficulty(element.value));
