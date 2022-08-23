@@ -42,25 +42,33 @@ function getCardSet() {
     let brownSum = currentAncient.firstStage.brownCards + currentAncient.secondStage.brownCards + currentAncient.thirdStage.brownCards;
 
     let greenDeck = [];
+    let blueDeck = [];
+    let brownDeck = [];
 
     if (currentDifficult = 'very-easy') {
-        let srcDeck = [].concat(greenCardsData);
-        for (let i = 1; i <= greenSum; i++) {
-            let currentCard = getRandomCard(srcDeck, 'easy');
-            greenDeck.push(currentCard);
-        }
-        // greenCardsData.forEach(card => {
-        //     if (card.difficulty == 'easy') {
-        //         greenDeck.push(card);
-        //     }
-        // });
+        greenDeck = getVeryEasyDeck(greenCardsData, greenSum);
+        blueDeck = getVeryEasyDeck(blueCardsData, blueSum);
+        brownDeck = getVeryEasyDeck(brownCardsData, brownSum);
+        // let srcDeck = [].concat(greenCardsData);
+        // for (let i = 1; i <= greenSum; i++) {
+        //     let restCardCount = 0;
+        //     srcDeck.forEach(element => {
+        //         if (element.difficulty == 'easy') {
+        //             restCardCount++;
+        //         }
+        //     });
+        //     let currentCard = restCardCount != 0 ? getRandomCard(srcDeck, 'easy') : getRandomCard(srcDeck, 'normal');
+        //     greenDeck.push(currentCard);
+        // }
+
     }
     
 
    //DEBUG
    console.log(greenDeck); 
-//    console.log(`Синие: ${blueSum}`);
-//    console.log(`Коричнивые: ${brownSum}`);     
+   console.log(blueDeck);
+   console.log(brownDeck);
+
 }
 
 function getRandomCard(srcDeck, difficulty = false) {
@@ -79,6 +87,24 @@ function getRandomCard(srcDeck, difficulty = false) {
         srcDeck.splice(randomId, 1);
     }
     return card;
+}
+
+function getVeryEasyDeck(colorCardsData, cardsSum) {
+    let resultDeck = [];
+    let srcDeck = [].concat(colorCardsData);
+
+    for (let i = 1; i <= cardsSum; i++) {
+        let restCardCount = 0;
+        srcDeck.forEach(element => {
+            if (element.difficulty == 'easy') {
+                restCardCount++;
+            }
+        });
+        let currentCard = restCardCount != 0 ? getRandomCard(srcDeck, 'easy') : getRandomCard(srcDeck, 'normal');
+        resultDeck.push(currentCard);
+    }
+
+    return resultDeck;
 }
 
 showAncient();
