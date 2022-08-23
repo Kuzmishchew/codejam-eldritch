@@ -1,23 +1,23 @@
-import green1 from './green1.png';
-import green2 from './green2.png';
-import green3 from './green3.png';
-import green4 from './green4.png';
-import green5 from './green5.png';
-import green6 from './green6.png';
-import green7 from './green7.png';
-import green8 from './green8.png';
-import green9 from './green9.png';
-import green10 from './green10.png';
-import green11 from './green11.png';
-import green12 from './green12.png';
-import green13 from './green13.png';
-import green14 from './green14.png';
-import green15 from './green15.png';
-import green16 from './green16.png';
-import green17 from './green17.png';
-import green18 from './green18.png';
+let green1 = '../assets/MythicCards/green1.png';
+let green2 = '../assets/MythicCards/green2.png';
+let green3 = '../assets/MythicCards/green3.png';
+let green4 = '../assets/MythicCards/green4.png';
+let green5 = '../assets/MythicCards/green5.png';
+let green6 = '../assets/MythicCards/green6.png';
+let green7 = '../assets/MythicCards/green7.png';
+let green8 = '../assets/MythicCards/green8.png';
+let green9 = '../assets/MythicCards/green9.png';
+let green10 = '../assets/MythicCards/green10.png';
+let green11 = '../assets/MythicCards/green11.png';
+let green12 = '../assets/MythicCards/green12.png';
+let green13 = '../assets/MythicCards/green13.png';
+let green14 = '../assets/MythicCards/green14.png';
+let green15 = '../assets/MythicCards/green15.png';
+let green16 = '../assets/MythicCards/green16.png';
+let green17 = '../assets/MythicCards/green17.png';
+let green18 = '../assets/MythicCards/green18.png';
 
-const cards = {
+const greenCardsAssets = {
   green1,
   green2,
   green3,
@@ -38,4 +38,4 @@ const cards = {
   green18,
 };
 
-export default cards;
+export default greenCardsAssets;

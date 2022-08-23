@@ -1,26 +1,26 @@
-import brown1 from './brown1.png';
-import brown2 from './brown2.png';
-import brown3 from './brown3.png';
-import brown4 from './brown4.png';
-import brown5 from './brown5.png';
-import brown6 from './brown6.png';
-import brown7 from './brown7.png';
-import brown8 from './brown8.png';
-import brown9 from './brown9.png';
-import brown10 from './brown10.png';
-import brown11 from './brown11.png';
-import brown12 from './brown12.png';
-import brown13 from './brown13.png';
-import brown14 from './brown14.png';
-import brown15 from './brown15.png';
-import brown16 from './brown16.png';
-import brown17 from './brown17.png';
-import brown18 from './brown18.png';
-import brown19 from './brown19.png';
-import brown20 from './brown20.png';
-import brown21 from './brown21.png';
+let brown1 = '../assets/MythicCars/brown/brown1.png';
+let brown2 = '../assets/MythicCars/brown/brown2.png';
+let brown3 = '../assets/MythicCars/brown/brown3.png';
+let brown4 = '../assets/MythicCars/brown/brown4.png';
+let brown5 = '../assets/MythicCars/brown/brown5.png';
+let brown6 = '../assets/MythicCars/brown/brown6.png';
+let brown7 = '../assets/MythicCars/brown/brown7.png';
+let brown8 = '../assets/MythicCars/brown/brown8.png';
+let brown9 = '../assets/MythicCars/brown/brown9.png';
+let brown10 = '../assets/MythicCars/brown/brown10.png';
+let brown11 = '../assets/MythicCars/brown/brown11.png';
+let brown12 = '../assets/MythicCars/brown/brown12.png';
+let brown13 = '../assets/MythicCars/brown/brown13.png';
+let brown14 = '../assets/MythicCars/brown/brown14.png';
+let brown15 = '../assets/MythicCars/brown/brown15.png';
+let brown16 = '../assets/MythicCars/brown/brown16.png';
+let brown17 = '../assets/MythicCars/brown/brown17.png';
+let brown18 = '../assets/MythicCars/brown/brown18.png';
+let brown19 = '../assets/MythicCars/brown/brown19.png';
+let brown20 = '../assets/MythicCars/brown/brown20.png';
+let brown21 = '../assets/MythicCars/brown/brown21.png';
 
-const cards = {
+const brownCardsAssets = {
   brown1,
   brown2,
   brown3,
@@ -44,4 +44,4 @@ const cards = {
   brown21,
 }
 
-export default cards
+export default brownCardsAssets
