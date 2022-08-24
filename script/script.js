@@ -14,6 +14,10 @@ let greenDeck = [];
 let blueDeck = [];
 let brownDeck = [];
 
+let firstSet = [];
+let secondSet = [];
+let thirdSet = [];
+
 function showAncient() {
     ancientsData.forEach(element => {
         let cardFace = document.getElementById(element.id);
@@ -83,19 +87,77 @@ function getCardSet() {
     
 
    //DEBUG
-   console.log(`Deck:`);
    console.log(greenDeck); 
-   console.log(`Mix deck:`);
-   console.log(mixDeck(greenDeck));
-
-   console.log(blueDeck);
-   
-   console.log(`Deck:`);
+   console.log(blueDeck);   
    console.log(brownDeck);
-   console.log(`Mix deck:`);
-   console.log(mixDeck(brownDeck));
 }
 
+function getPhaseSet() {
+    getCardSet();
+
+    let firstSum = currentAncient.firstStage.greenCards + currentAncient.firstStage.blueCards + currentAncient.firstStage.brownCards;
+    let secondSum = currentAncient.secondStage.greenCards + currentAncient.secondStage.blueCards + currentAncient.secondStage.brownCards;
+    let thirdSum = currentAncient.thirdStage.greenCards + currentAncient.thirdStage.blueCards + currentAncient.thirdStage.brownCards;
+
+    let bufferGreen = [].concat(greenDeck);
+    let bufferBlue = [].concat(blueDeck);
+    let bufferBrown = [].concat(brownDeck);
+
+    firstSet = [];
+    secondSet = [];
+    thirdSet = [];
+
+    //Выбирем зеленые карты.
+    for (let i = 1; i <= currentAncient.firstStage.greenCards; i++) {
+        let currentCard = getRandomCard(bufferGreen);
+        firstSet.push(currentCard);
+    }
+    for (let i = 1; i <= currentAncient.secondStage.greenCards; i++) {
+        let currentCard = getRandomCard(bufferGreen);
+        secondSet.push(currentCard);
+    }
+    for (let i = 1; i <= currentAncient.thirdStage.greenCards; i++) {
+        let currentCard = getRandomCard(bufferGreen);
+        thirdSet.push(currentCard);
+    }
+
+    //Выбирем синие карты.
+    for (let i = 1; i <= currentAncient.firstStage.blueCards; i++) {
+        let currentCard = getRandomCard(bufferBlue);
+        firstSet.push(currentCard);
+    }
+    for (let i = 1; i <= currentAncient.secondStage.blueCards; i++) {
+        let currentCard = getRandomCard(bufferBlue);
+        secondSet.push(currentCard);
+    }
+    for (let i = 1; i <= currentAncient.thirdStage.blueCards; i++) {
+        let currentCard = getRandomCard(bufferBlue);
+        thirdSet.push(currentCard);
+    }
+
+    //Выбирем коричневые карты.
+    for (let i = 1; i <= currentAncient.firstStage.brownCards; i++) {
+        let currentCard = getRandomCard(bufferBrown);
+        firstSet.push(currentCard);
+    }
+    for (let i = 1; i <= currentAncient.secondStage.brownCards; i++) {
+        let currentCard = getRandomCard(bufferBrown);
+        secondSet.push(currentCard);
+    }
+    for (let i = 1; i <= currentAncient.thirdStage.brownCards; i++) {
+        let currentCard = getRandomCard(bufferBrown);
+        thirdSet.push(currentCard);
+    }
+
+    //DEBUG:
+    console.log(`Green card, first set:`);
+    console.log(firstSet);
+    console.log(`Green card, second set:`);
+    console.log(secondSet);
+    console.log(`Green card, third set:`);
+    console.log(thirdSet);
+
+}
 //Достаём случайную карту из колоды.
 function getRandomCard(srcDeck, difficulty = false) {
     let randomId = Math.floor(Math.random() * srcDeck.length);
@@ -131,7 +193,7 @@ function getVeryEasyDeck(colorCardsData, cardsSum) {
         resultDeck.push(currentCard);
     }
 
-    return resultDeck;
+    return mixDeck(resultDeck);
 }
 function getEasyDeck(colorCardsData, cardsSum) {
     let resultDeck = [];
@@ -147,7 +209,7 @@ function getEasyDeck(colorCardsData, cardsSum) {
         let currentCard = getRandomCard(srcDeck);
         resultDeck.push(currentCard);
     }
-    return resultDeck;
+    return mixDeck(resultDeck);
 }
 function getMediumDeck(colorCardsData, cardsSum) {
     let resultDeck = [];
@@ -158,7 +220,7 @@ function getMediumDeck(colorCardsData, cardsSum) {
         resultDeck.push(currentCard);
     }
 
-    return resultDeck;
+    return mixDeck(resultDeck);
 }
 function getHardDeck(colorCardsData, cardsSum) {
     let resultDeck = [];
@@ -174,7 +236,7 @@ function getHardDeck(colorCardsData, cardsSum) {
         let currentCard = getRandomCard(srcDeck);
         resultDeck.push(currentCard);
     }
-    return resultDeck;
+    return mixDeck(resultDeck);
 }
 function getVeryHardDeck(colorCardsData, cardsSum) {
     let resultDeck = [];
@@ -191,7 +253,7 @@ function getVeryHardDeck(colorCardsData, cardsSum) {
         resultDeck.push(currentCard);
     }
 
-    return resultDeck;
+    return mixDeck(resultDeck);
 }
 
 //Можем перемешть любую собранную колоду.
@@ -212,4 +274,4 @@ DIFFICLUTIES_INPUTS.forEach(element => {
     element.addEventListener('input', () => selectDifficulty(element.value));
 });
 
-MIX_BUTTON.addEventListener('click', getCardSet);
+MIX_BUTTON.addEventListener('click', getPhaseSet);
