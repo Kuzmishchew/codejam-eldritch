@@ -6,6 +6,8 @@ import blueCardsData from '../data/mythicCards/blue/index.js';
 
 const DIFFICLUTIES_INPUTS = document.getElementsByName('difficulty-level');
 const MIX_BUTTON = document.querySelector('.mix-button');
+const UNFLIP_CARD = document.querySelector('.unflip-card');
+const GAME_CARD = document.querySelector('.game-card');
 
 let currentAncient = {};
 let currentDifficult = '';
@@ -17,6 +19,8 @@ let brownDeck = [];
 let firstSet = [];
 let secondSet = [];
 let thirdSet = [];
+
+let gameDeck = [];
 
 function showAncient() {
     ancientsData.forEach(element => {
@@ -166,11 +170,11 @@ function getGameDeck() {
     let mixedSecond = mixDeck(secondSet);
     let mixedThird = mixDeck(thirdSet);
 
-    let resultDeck = [].concat(mixedThird, mixedSecond, mixedFirst);
+    gameDeck = [].concat(mixedThird, mixedSecond, mixedFirst);
 
     //DEBUG
     console.log('Итоговый набор:')
-    console.log(resultDeck);
+    console.log(gameDeck);
 
 }
 //Достаём случайную карту из колоды.
@@ -284,9 +288,19 @@ function mixDeck(deck) {
     return resultDeck;
 }
 
+function showCard() {
+    GAME_CARD.style.backgroundImage = `url('${gameDeck[gameDeck.length - 1]['cardFace']}')`;
+    gameDeck.pop();
+
+    if (gameDeck.length == 0) {
+        UNFLIP_CARD.style.backgroundImage = 'url()';
+    }
+}
+
 showAncient();
 DIFFICLUTIES_INPUTS.forEach(element => {
     element.addEventListener('input', () => selectDifficulty(element.value));
 });
 
 MIX_BUTTON.addEventListener('click', getGameDeck);
+UNFLIP_CARD.addEventListener('click', showCard);

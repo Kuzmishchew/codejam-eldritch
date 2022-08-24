@@ -142,5 +142,10 @@ body {
     width: 15vw;
     height: 20vw;
 
+    background-size: cover;
     border: 1px solid white; 
+}
+
+.unflip-card {
+    background-image: url('../assets/mythicCardBackground.png');
 }
