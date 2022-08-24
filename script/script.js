@@ -45,7 +45,7 @@ function getCardSet() {
     let blueDeck = [];
     let brownDeck = [];
 
-    if (currentDifficult = 'very-easy') {
+    if (currentDifficult == 'very-easy') {
         greenDeck = getVeryEasyDeck(greenCardsData, greenSum);
         blueDeck = getVeryEasyDeck(blueCardsData, blueSum);
         brownDeck = getVeryEasyDeck(brownCardsData, brownSum);
@@ -61,12 +61,17 @@ function getCardSet() {
         //     greenDeck.push(currentCard);
         // }
     } 
-    if (currentDifficult = 'easy') {
+    if (currentDifficult == 'easy') {
         greenDeck = getEasyDeck(greenCardsData, greenSum);
         blueDeck = getEasyDeck(blueCardsData, blueSum);
         brownDeck = getEasyDeck(brownCardsData, brownSum);
     }
     
+    if (currentDifficult == 'medium') {
+        greenDeck = getMediumDeck(greenCardsData, greenSum);
+        blueDeck = getMediumDeck(blueCardsData, blueSum);
+        brownDeck = getMediumDeck(brownCardsData, brownSum);
+    }
 
    //DEBUG
    console.log(greenDeck); 
@@ -124,6 +129,17 @@ function getEasyDeck(colorCardsData, cardsSum) {
         let currentCard = getRandomCard(srcDeck);
         resultDeck.push(currentCard);
     }
+    return resultDeck;
+}
+function getMediumDeck(colorCardsData, cardsSum) {
+    let resultDeck = [];
+    let srcDeck = [].concat(colorCardsData);
+
+    for (let i = 1; i <= cardsSum; i++) {
+        let currentCard = getRandomCard(srcDeck);
+        resultDeck.push(currentCard);
+    }
+
     return resultDeck;
 }
 
