@@ -40,6 +40,7 @@ function selectDifficulty(value) {
     console.log(currentDifficult);
 }
 
+//Собираем из набора колоды по цветам.
 function getCardSet() {
     let greenSum = currentAncient.firstStage.greenCards + currentAncient.secondStage.greenCards + currentAncient.thirdStage.greenCards;
     let blueSum = currentAncient.firstStage.blueCards + currentAncient.secondStage.blueCards + currentAncient.thirdStage.blueCards;
@@ -93,10 +94,9 @@ function getCardSet() {
    console.log(brownDeck);
    console.log(`Mix deck:`);
    console.log(mixDeck(brownDeck));
-   
-   
 }
 
+//Достаём случайную карту из колоды.
 function getRandomCard(srcDeck, difficulty = false) {
     let randomId = Math.floor(Math.random() * srcDeck.length);
     let card = {};
@@ -115,6 +115,7 @@ function getRandomCard(srcDeck, difficulty = false) {
     return card;
 }
 
+//Сбор колоды согласно выбранной сложности.
 function getVeryEasyDeck(colorCardsData, cardsSum) {
     let resultDeck = [];
     let srcDeck = [].concat(colorCardsData);
@@ -132,7 +133,6 @@ function getVeryEasyDeck(colorCardsData, cardsSum) {
 
     return resultDeck;
 }
-
 function getEasyDeck(colorCardsData, cardsSum) {
     let resultDeck = [];
     let srcDeck = [];
@@ -149,7 +149,6 @@ function getEasyDeck(colorCardsData, cardsSum) {
     }
     return resultDeck;
 }
-
 function getMediumDeck(colorCardsData, cardsSum) {
     let resultDeck = [];
     let srcDeck = [].concat(colorCardsData);
@@ -161,7 +160,6 @@ function getMediumDeck(colorCardsData, cardsSum) {
 
     return resultDeck;
 }
-
 function getHardDeck(colorCardsData, cardsSum) {
     let resultDeck = [];
     let srcDeck = [];
@@ -178,7 +176,6 @@ function getHardDeck(colorCardsData, cardsSum) {
     }
     return resultDeck;
 }
-
 function getVeryHardDeck(colorCardsData, cardsSum) {
     let resultDeck = [];
     let srcDeck = [].concat(colorCardsData);
@@ -197,6 +194,7 @@ function getVeryHardDeck(colorCardsData, cardsSum) {
     return resultDeck;
 }
 
+//Можем перемешть любую собранную колоду.
 function mixDeck(deck) {
     let bufferDeck = [].concat(deck);
     let resultDeck = [];
