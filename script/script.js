@@ -158,6 +158,21 @@ function getPhaseSet() {
     console.log(thirdSet);
 
 }
+
+function getGameDeck() {
+    getPhaseSet();
+
+    let mixedFirst = mixDeck(firstSet);
+    let mixedSecond = mixDeck(secondSet);
+    let mixedThird = mixDeck(thirdSet);
+
+    let resultDeck = [].concat(mixedThird, mixedSecond, mixedFirst);
+
+    //DEBUG
+    console.log('Итоговый набор:')
+    console.log(resultDeck);
+
+}
 //Достаём случайную карту из колоды.
 function getRandomCard(srcDeck, difficulty = false) {
     let randomId = Math.floor(Math.random() * srcDeck.length);
@@ -274,4 +289,4 @@ DIFFICLUTIES_INPUTS.forEach(element => {
     element.addEventListener('input', () => selectDifficulty(element.value));
 });
 
-MIX_BUTTON.addEventListener('click', getPhaseSet);
+MIX_BUTTON.addEventListener('click', getGameDeck);
