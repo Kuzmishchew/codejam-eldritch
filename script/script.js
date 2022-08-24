@@ -49,18 +49,8 @@ function getCardSet() {
         greenDeck = getVeryEasyDeck(greenCardsData, greenSum);
         blueDeck = getVeryEasyDeck(blueCardsData, blueSum);
         brownDeck = getVeryEasyDeck(brownCardsData, brownSum);
-        // let srcDeck = [].concat(greenCardsData);
-        // for (let i = 1; i <= greenSum; i++) {
-        //     let restCardCount = 0;
-        //     srcDeck.forEach(element => {
-        //         if (element.difficulty == 'easy') {
-        //             restCardCount++;
-        //         }
-        //     });
-        //     let currentCard = restCardCount != 0 ? getRandomCard(srcDeck, 'easy') : getRandomCard(srcDeck, 'normal');
-        //     greenDeck.push(currentCard);
-        // }
     } 
+
     if (currentDifficult == 'easy') {
         greenDeck = getEasyDeck(greenCardsData, greenSum);
         blueDeck = getEasyDeck(blueCardsData, blueSum);
@@ -77,6 +67,12 @@ function getCardSet() {
         greenDeck = getHardDeck(greenCardsData, greenSum);
         blueDeck = getHardDeck(blueCardsData, blueSum);
         brownDeck = getHardDeck(brownCardsData, brownSum);
+    }
+
+    if (currentDifficult == 'very-hard') {
+        greenDeck = getVeryHardDeck(greenCardsData, greenSum);
+        blueDeck = getVeryHardDeck(blueCardsData, blueSum);
+        brownDeck = getVeryHardDeck(brownCardsData, brownSum);
     }
 
     
@@ -123,6 +119,7 @@ function getVeryEasyDeck(colorCardsData, cardsSum) {
 
     return resultDeck;
 }
+
 function getEasyDeck(colorCardsData, cardsSum) {
     let resultDeck = [];
     let srcDeck = [];
@@ -166,6 +163,24 @@ function getHardDeck(colorCardsData, cardsSum) {
         let currentCard = getRandomCard(srcDeck);
         resultDeck.push(currentCard);
     }
+    return resultDeck;
+}
+
+function getVeryHardDeck(colorCardsData, cardsSum) {
+    let resultDeck = [];
+    let srcDeck = [].concat(colorCardsData);
+
+    for (let i = 1; i <= cardsSum; i++) {
+        let restCardCount = 0;
+        srcDeck.forEach(element => {
+            if (element.difficulty == 'hard') {
+                restCardCount++;
+            }
+        });
+        let currentCard = restCardCount != 0 ? getRandomCard(srcDeck, 'hard') : getRandomCard(srcDeck, 'normal');
+        resultDeck.push(currentCard);
+    }
+
     return resultDeck;
 }
 
