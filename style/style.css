@@ -9,6 +9,7 @@ body {
 
     font-size: 3vh;
     color: white;
+
 }
 
 .ancients-container {
@@ -24,8 +25,19 @@ body {
     width: 15vw;
     height: 20vw;
 
-    border: 1px solid white;
     background-size: cover;
+
+    box-shadow: 10px 5px 15px black;
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+.ancient-card:hover {
+    position: relative;
+    top: -5px;
+}
+.ancient-card-active {
+    box-shadow: 5px 5px 25px red;
 }
 
 .difficulty-container {
@@ -34,6 +46,10 @@ body {
     width: 20vw;
     height: 45vh;
     padding-left: 20px;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s;
 }
 
 .difficulty-setter {
@@ -50,6 +66,7 @@ body {
     align-items: center;
     justify-content: space-around;
     width: 75vw;
+
 }
 
 .mix-button {
@@ -62,6 +79,17 @@ body {
     color: white;
     text-align: center;
     line-height: 7vh;
+
+    opacity: 0;
+    cursor: pointer;
+    pointer-events: none;
+    transition: all 0.5s;
+    transition: opacity 1s;
+}
+
+.mix-button:hover {
+    background-color: gray;
+    color: black;
 }
 
 .phase-container {
@@ -71,6 +99,10 @@ body {
 
     width: 17vw;
     height: 100%;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s;
 }
 
 .phase-tracker {
@@ -136,16 +168,30 @@ body {
     justify-content: space-around;
     width: 40vw;
     height: 100%;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 2s;
 }
 
 .deck-card {
     width: 15vw;
     height: 20vw;
 
-    background-size: cover;
-    border: 1px solid white; 
+    background-size: cover;  
+    border-radius: 5px;  
 }
 
 .unflip-card {
     background-image: url('../assets/mythicCardBackground.png');
+    opacity: 1;
+
+    cursor: pointer;
+    
+}
+.unflip-card:hover {
+    position: relative;
+    top: 10px;
+
+    transition: all 1s;
 }

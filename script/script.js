@@ -4,8 +4,11 @@ import brownCardsData from '../data/mythicCards/brown/index.js';
 import blueCardsData from '../data/mythicCards/blue/index.js';
 
 
+const DIFFICLUTY_CONTAINER = document.querySelector('.difficulty-container');
 const DIFFICLUTIES_INPUTS = document.getElementsByName('difficulty-level');
 const MIX_BUTTON = document.querySelector('.mix-button');
+const PHASE_CONTAINER = document.querySelector('.phase-container');
+const DECK_CONTAINER = document.querySelector('.deck');
 const UNFLIP_CARD = document.querySelector('.unflip-card');
 const GAME_CARD = document.querySelector('.game-card');
 
@@ -27,13 +30,26 @@ function showAncient() {
         let cardFace = document.getElementById(element.id);
         cardFace.style.backgroundImage = `url(${element.cardFace}`;
 
-        cardFace.addEventListener('click', () => selectAnciant(element));
+        cardFace.addEventListener('click', () => {
+            let currentActive = document.querySelector('.ancient-card-active');
+
+            if (currentActive) {                
+                currentActive.classList.remove('ancient-card-active');
+            }
+            
+            cardFace.classList.add('ancient-card-active');
+
+            selectAnciant(element);
+        });
     });
 }
 
 function selectAnciant(element) {
     currentAncient = {};
     Object.assign(currentAncient, element);
+
+    DIFFICLUTY_CONTAINER.style.opacity = '1';
+    DIFFICLUTY_CONTAINER.style.pointerEvents = 'auto';
 
     //DEBUG
     console.log(currentAncient);
@@ -43,6 +59,8 @@ function selectDifficulty(value) {
     currentDifficult = '';
     currentDifficult = value;
 
+    MIX_BUTTON.style.opacity = '1';
+    MIX_BUTTON.style.pointerEvents = 'auto';
     // getCardSet();
     //DEBUG
     console.log(currentDifficult);
@@ -172,6 +190,17 @@ function getGameDeck() {
 
     gameDeck = [].concat(mixedThird, mixedSecond, mixedFirst);
 
+    PHASE_CONTAINER.style.opacity = '1';
+    DECK_CONTAINER.style.opacity = '1';
+    PHASE_CONTAINER.style.pointerEvents = 'auto';
+    DECK_CONTAINER.style.pointerEvents = 'auto';
+
+    MIX_BUTTON.style.opacity = '0';
+    MIX_BUTTON.style.pointerEvents = 'none';
+
+    UNFLIP_CARD.style.opacity = '1';
+    UNFLIP_CARD.style.pointerEvents = 'auto';
+    GAME_CARD.style.backgroundImage = `url('')`;
     //DEBUG
     console.log('Итоговый набор:')
     console.log(gameDeck);
@@ -293,7 +322,8 @@ function showCard() {
     gameDeck.pop();
 
     if (gameDeck.length == 0) {
-        UNFLIP_CARD.style.backgroundImage = 'url()';
+        UNFLIP_CARD.style.opacity = '0';
+        UNFLIP_CARD.style.pointerEvents = 'none';
     }
 }
 
