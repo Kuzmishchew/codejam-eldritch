@@ -10,6 +10,10 @@ const MIX_BUTTON = document.querySelector('.mix-button');
 let currentAncient = {};
 let currentDifficult = '';
 
+let greenDeck = [];
+let blueDeck = [];
+let brownDeck = [];
+
 function showAncient() {
     ancientsData.forEach(element => {
         let cardFace = document.getElementById(element.id);
@@ -40,10 +44,10 @@ function getCardSet() {
     let greenSum = currentAncient.firstStage.greenCards + currentAncient.secondStage.greenCards + currentAncient.thirdStage.greenCards;
     let blueSum = currentAncient.firstStage.blueCards + currentAncient.secondStage.blueCards + currentAncient.thirdStage.blueCards;
     let brownSum = currentAncient.firstStage.brownCards + currentAncient.secondStage.brownCards + currentAncient.thirdStage.brownCards;
-
-    let greenDeck = [];
-    let blueDeck = [];
-    let brownDeck = [];
+    greenDeck = [];
+    blueDeck = [];
+    brownDeck = [];
+    
 
     if (currentDifficult == 'very-easy') {
         greenDeck = getVeryEasyDeck(greenCardsData, greenSum);
@@ -78,10 +82,19 @@ function getCardSet() {
     
 
    //DEBUG
+   console.log(`Deck:`);
    console.log(greenDeck); 
-   console.log(blueDeck);
-   console.log(brownDeck);
+   console.log(`Mix deck:`);
+   console.log(mixDeck(greenDeck));
 
+   console.log(blueDeck);
+   
+   console.log(`Deck:`);
+   console.log(brownDeck);
+   console.log(`Mix deck:`);
+   console.log(mixDeck(brownDeck));
+   
+   
 }
 
 function getRandomCard(srcDeck, difficulty = false) {
@@ -179,6 +192,18 @@ function getVeryHardDeck(colorCardsData, cardsSum) {
         });
         let currentCard = restCardCount != 0 ? getRandomCard(srcDeck, 'hard') : getRandomCard(srcDeck, 'normal');
         resultDeck.push(currentCard);
+    }
+
+    return resultDeck;
+}
+
+function mixDeck(deck) {
+    let bufferDeck = [].concat(deck);
+    let resultDeck = [];
+    let length = bufferDeck.length;
+
+    for (let i = 0; i < length; i++) {
+        resultDeck.push(getRandomCard(bufferDeck));
     }
 
     return resultDeck;
