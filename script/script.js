@@ -72,7 +72,11 @@ function selectAnciant(element) {
     ANCIENT_COMMAND.style.display = "none";
 
     //DEBUG
-    console.log(currentAncient);
+    console.log(`Выбранный древний: ${currentAncient.name}`);
+    console.log('Количество карт по стадиям:');
+    console.log(`1. Зел - ${currentAncient.firstStage.greenCards}; Кор - ${currentAncient.firstStage.brownCards}; Син - ${currentAncient.firstStage.blueCards}`);
+    console.log(`2. Зел - ${currentAncient.secondStage.greenCards}; Кор - ${currentAncient.secondStage.brownCards}; Син - ${currentAncient.secondStage.blueCards}`);
+    console.log(`3. Зел - ${currentAncient.thirdStage.greenCards}; Кор - ${currentAncient.thirdStage.brownCards}; Син - ${currentAncient.thirdStage.blueCards}`);
 }
 
 function selectDifficulty(value) {
@@ -90,9 +94,8 @@ function selectDifficulty(value) {
     MIX_BUTTON.style.opacity = '1';
     MIX_BUTTON.style.pointerEvents = 'auto';
 
-    // getCardSet();
     //DEBUG
-    console.log(currentDifficult);
+    console.log(`Cложность: ${currentDifficult}`);
 }
 
 //Собираем из набора колоды по цветам.
@@ -134,13 +137,6 @@ function getCardSet() {
         blueDeck = getVeryHardDeck(blueCardsData, blueSum);
         brownDeck = getVeryHardDeck(brownCardsData, brownSum);
     }
-
-    
-
-   //DEBUG
-   console.log(greenDeck); 
-   console.log(blueDeck);   
-   console.log(brownDeck);
 }
 
 function getPhaseSet() {
@@ -199,15 +195,6 @@ function getPhaseSet() {
         let currentCard = getRandomCard(bufferBrown);
         thirdSet.push(currentCard);
     }
-
-    //DEBUG:
-    console.log(`Green card, first set:`);
-    console.log(firstSet);
-    console.log(`Green card, second set:`);
-    console.log(secondSet);
-    console.log(`Green card, third set:`);
-    console.log(thirdSet);
-
 }
 
 function getGameDeck() {
@@ -238,8 +225,17 @@ function getGameDeck() {
 
     trackCard();
 
+    //DEBUG:
+    console.log(`Массивы объектов, представляющие наборы для каждой стадии:`);
+    console.log(`- первая стадия`);
+    console.log(mixedFirst);
+    console.log(`- вторая стадия`);
+    console.log(mixedSecond);
+    console.log(`- третья стадия`);
+    console.log(mixedThird);
     //DEBUG
-    console.log('Итоговый набор:')
+    console.log('Итоговый набор, в котором карты будут сниматься с конца.');
+    console.log('Стадии в обратном порядке. Т.е. в конце массива - первая стадия.');
     console.log(gameDeck);
 
 }
