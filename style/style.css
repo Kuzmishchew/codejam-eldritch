@@ -9,7 +9,26 @@ body {
 
     font-size: 3vh;
     color: white;
+}
 
+.eye {
+    position: absolute;
+    right: 3%;
+    top: 3%;
+
+    width: 15%;
+    height: 7.5%;
+
+    background-image: url('../assets/eye.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.eye:hover {
+    opacity: 1;
 }
 
 .ancients-container {
@@ -22,6 +41,7 @@ body {
 }
 
 .ancient-card {
+    position: relative;
     width: 15vw;
     height: 20vw;
 
@@ -239,4 +259,8 @@ body {
     top: 10px;
 
     transition: all 0.5s;
+}
+
+.game-card {
+    position: relative;
 }
