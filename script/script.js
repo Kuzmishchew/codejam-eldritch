@@ -28,6 +28,10 @@ let firstSet = [];
 let secondSet = [];
 let thirdSet = [];
 
+let mixedFirst = [];
+let mixedSecond = [];
+let mixedThird = [];
+
 let gameDeck = [];
 
 function showAncient() {
@@ -201,9 +205,9 @@ function getPhaseSet() {
 function getGameDeck() {
     getPhaseSet();
 
-    let mixedFirst = mixDeck(firstSet);
-    let mixedSecond = mixDeck(secondSet);
-    let mixedThird = mixDeck(thirdSet);
+    mixedFirst = mixDeck(firstSet);
+    mixedSecond = mixDeck(secondSet);
+    mixedThird = mixDeck(thirdSet);
 
 
     gameDeck = [].concat(mixedThird, mixedSecond, mixedFirst);
@@ -220,21 +224,10 @@ function getGameDeck() {
     UNFLIP_CARD.style.pointerEvents = 'auto';
     GAME_CARD.style.backgroundImage = `url('')`;
 
-    let trackFirst = getcardSum(firstSet);
-    let trackSecond = getcardSum(secondSet);
-    let trackThird = getcardSum(thirdSet);
+    FIRST_PHASE.parentNode.classList.add('phase-tracker-active');
 
-    FIRST_PHASE.querySelector('.phase-green').textContent = trackFirst.green;
-    FIRST_PHASE.querySelector('.phase-brown').textContent = trackFirst.brown;
-    FIRST_PHASE.querySelector('.phase-blue').textContent = trackFirst.blue;
+    trackCard();
 
-    SECOND_PHASE.querySelector('.phase-green').textContent = trackSecond.green;
-    SECOND_PHASE.querySelector('.phase-brown').textContent = trackSecond.brown;
-    SECOND_PHASE.querySelector('.phase-blue').textContent = trackSecond.blue;
-
-    THIRD_PHASE.querySelector('.phase-green').textContent = trackThird.green;
-    THIRD_PHASE.querySelector('.phase-brown').textContent = trackThird.brown;
-    THIRD_PHASE.querySelector('.phase-blue').textContent = trackThird.blue;
     //DEBUG
     console.log('Итоговый набор:')
     console.log(gameDeck);
@@ -351,7 +344,7 @@ function mixDeck(deck) {
     return resultDeck;
 }
 
-function getcardSum(deck) {
+function getCardSum(deck) {
     let result = {
         green: 0,
         brown: 0,
@@ -365,11 +358,45 @@ function getcardSum(deck) {
     return result;
 }
 
+//Отслеживаем текущее состояние колоды.
+function trackCard() {
+    let trackFirst = getCardSum(mixedFirst);
+    let trackSecond = getCardSum(mixedSecond);
+    let trackThird = getCardSum(mixedThird);
+
+    FIRST_PHASE.querySelector('.phase-green').textContent = trackFirst.green;
+    FIRST_PHASE.querySelector('.phase-brown').textContent = trackFirst.brown;
+    FIRST_PHASE.querySelector('.phase-blue').textContent = trackFirst.blue;
+
+    SECOND_PHASE.querySelector('.phase-green').textContent = trackSecond.green;
+    SECOND_PHASE.querySelector('.phase-brown').textContent = trackSecond.brown;
+    SECOND_PHASE.querySelector('.phase-blue').textContent = trackSecond.blue;
+
+    THIRD_PHASE.querySelector('.phase-green').textContent = trackThird.green;
+    THIRD_PHASE.querySelector('.phase-brown').textContent = trackThird.brown;
+    THIRD_PHASE.querySelector('.phase-blue').textContent = trackThird.blue;
+}
+
 function showCard() {
     GAME_CARD.style.backgroundImage = `url('${gameDeck[gameDeck.length - 1]['cardFace']}')`;
     gameDeck.pop();
 
-
+    if (mixedFirst.length > 0) {
+        mixedFirst.pop();
+        trackCard();
+    } else if (mixedSecond.length > 0) {
+        mixedSecond.pop();
+        trackCard();
+        FIRST_PHASE.parentNode.classList.remove('phase-tracker-active');
+        SECOND_PHASE.parentNode.classList.add('phase-tracker-active');
+    } else if (mixedThird.length > 0) {
+        mixedThird.pop();
+        trackCard();
+        SECOND_PHASE.parentNode.classList.remove('phase-tracker-active');
+        THIRD_PHASE.parentNode.classList.add('phase-tracker-active');
+    }
+        
+    
 
     if (gameDeck.length == 0) {
         UNFLIP_CARD.style.opacity = '0';
@@ -378,6 +405,8 @@ function showCard() {
         MIX_BUTTON.style.opacity = '1';
         MIX_BUTTON.style.pointerEvents = 'auto'; 
         MIX_BUTTON.textContent = "Замешать новую колоду";   
+
+        THIRD_PHASE.parentNode.classList.remove('phase-tracker-active');
     }
 }
 
