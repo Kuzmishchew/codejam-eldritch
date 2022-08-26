@@ -74,7 +74,28 @@ body {
 }
 
 .difficulty-level-radio {
+    display: none;
+}
+
+.difficulty-header {
+    padding-bottom: 1vh;
+    text-align: center;
+    border-bottom: 1px solid white;
+}
+
+.difficulty-label {
+    height: 5vh; 
+
+    text-align: center;
+    line-height: 5vh;
+
+    border-radius: 5px;
+
     cursor: pointer;
+}
+.difficulty-label:hover {    
+    background-color: rgba(0, 0, 0, 0.4);
+    
 }
 
 .deck-container {

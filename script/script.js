@@ -79,6 +79,14 @@ function selectDifficulty(value) {
     currentDifficult = '';
     currentDifficult = value;
 
+    DIFFICLUTIES_INPUTS.forEach(element => {
+        let label = element.parentNode;
+        if (currentDifficult == element.value) {
+            label.style.color = 'yellow';
+        } else {
+            label.style.color = 'white';
+        }
+    });
     MIX_BUTTON.style.opacity = '1';
     MIX_BUTTON.style.pointerEvents = 'auto';
 
@@ -412,7 +420,13 @@ function showCard() {
 
 showAncient();
 DIFFICLUTIES_INPUTS.forEach(element => {
-    element.addEventListener('input', () => selectDifficulty(element.value));
+    let label = element.parentNode;
+    label.addEventListener('click', () => {
+        selectDifficulty(element.value);
+    });
+    // element.addEventListener('input', () => {
+    //     selectDifficulty(element.value);
+    // });
 });
 
 MIX_BUTTON.addEventListener('click', getGameDeck);
