@@ -17,6 +17,9 @@ const FIRST_PHASE = document.querySelector('.first-phase');
 const SECOND_PHASE = document.querySelector('.second-phase');
 const THIRD_PHASE = document.querySelector('.third-phase');
 
+const LARGE_CARD = document.querySelector('.rised-card');
+const EYE = document.querySelectorAll('.eye');
+
 let currentAncient = {};
 let currentDifficult = '';
 
@@ -222,6 +225,8 @@ function getGameDeck() {
     FIRST_PHASE.parentNode.classList.add('phase-tracker-active');
 
     GAME_CARD.style.boxShadow = '';
+    GAME_CARD.style.opacity = '0';
+    GAME_CARD.style.pointerEvents = 'none';
 
     trackCard();
 
@@ -386,6 +391,9 @@ function trackCard() {
 function showCard() {
     GAME_CARD.style.backgroundImage = `url('${gameDeck[gameDeck.length - 1]['cardFace']}')`;
     GAME_CARD.style.boxShadow = `5px 5px 25px ${gameDeck[gameDeck.length - 1]['color']}`;
+    GAME_CARD.style.opacity = '1';
+    GAME_CARD.style.pointerEvents = 'auto';
+
     gameDeck.pop();
 
     if (mixedFirst.length > 0) {
@@ -417,7 +425,17 @@ function showCard() {
     }
 }
 
+function showLargeCard(card) {
+    event.stopPropagation();
+    LARGE_CARD.style.backgroundImage = card.style.backgroundImage;
+    LARGE_CARD.parentNode.style.display = 'flex';
+    LARGE_CARD.parentNode.addEventListener('click', () => {
+        LARGE_CARD.parentNode.style.display = 'none';
+    })
+}
+
 showAncient();
+
 DIFFICLUTIES_INPUTS.forEach(element => {
     let label = element.parentNode;
     label.addEventListener('click', () => {
@@ -426,4 +444,12 @@ DIFFICLUTIES_INPUTS.forEach(element => {
 });
 
 MIX_BUTTON.addEventListener('click', getGameDeck);
+
 UNFLIP_CARD.addEventListener('click', showCard);
+
+EYE.forEach(element => {
+    let card = element.parentNode;
+    element.addEventListener('click', () => {
+        showLargeCard(card);
+    });    
+})
