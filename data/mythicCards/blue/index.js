@@ -1,4 +1,4 @@
-import blueCardsAssets from '/assets/MythicCards/blue/index.js';
+import blueCardsAssets from '../../../assets/MythicCards/blue/index.js';
 
 const blueCardsData = [
   {
