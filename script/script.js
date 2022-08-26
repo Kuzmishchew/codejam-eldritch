@@ -234,6 +234,8 @@ function getGameDeck() {
 
     FIRST_PHASE.parentNode.classList.add('phase-tracker-active');
 
+    GAME_CARD.style.boxShadow = '';
+
     trackCard();
 
     //DEBUG
@@ -387,6 +389,7 @@ function trackCard() {
 
 function showCard() {
     GAME_CARD.style.backgroundImage = `url('${gameDeck[gameDeck.length - 1]['cardFace']}')`;
+    GAME_CARD.style.boxShadow = `5px 5px 25px ${gameDeck[gameDeck.length - 1]['color']}`;
     gameDeck.pop();
 
     if (mixedFirst.length > 0) {
@@ -424,9 +427,6 @@ DIFFICLUTIES_INPUTS.forEach(element => {
     label.addEventListener('click', () => {
         selectDifficulty(element.value);
     });
-    // element.addEventListener('input', () => {
-    //     selectDifficulty(element.value);
-    // });
 });
 
 MIX_BUTTON.addEventListener('click', getGameDeck);

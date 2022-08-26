@@ -232,7 +232,7 @@ body {
     opacity: 1;
 
     cursor: pointer;
-    
+    box-shadow: 10px 5px 15px black;
 }
 .unflip-card:hover {
     position: relative;
