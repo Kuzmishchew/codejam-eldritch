@@ -11,6 +11,11 @@ const PHASE_CONTAINER = document.querySelector('.phase-container');
 const DECK_CONTAINER = document.querySelector('.deck');
 const UNFLIP_CARD = document.querySelector('.unflip-card');
 const GAME_CARD = document.querySelector('.game-card');
+const ANCIENT_COMMAND = document.querySelector('.ancient-command');
+
+const FIRST_PHASE = document.querySelector('.first-phase');
+const SECOND_PHASE = document.querySelector('.second-phase');
+const THIRD_PHASE = document.querySelector('.third-phase');
 
 let currentAncient = {};
 let currentDifficult = '';
@@ -51,6 +56,17 @@ function selectAnciant(element) {
     DIFFICLUTY_CONTAINER.style.opacity = '1';
     DIFFICLUTY_CONTAINER.style.pointerEvents = 'auto';
 
+    MIX_BUTTON.style.opacity = '0';
+    MIX_BUTTON.style.pointerEvents = 'none';
+
+    PHASE_CONTAINER.style.opacity = '0';
+    PHASE_CONTAINER.style.pointerEvents = 'none';
+
+    DECK_CONTAINER.style.opacity = '0';
+    DECK_CONTAINER.style.pointerEvents = 'none';
+
+    ANCIENT_COMMAND.style.display = "none";
+
     //DEBUG
     console.log(currentAncient);
 }
@@ -61,6 +77,7 @@ function selectDifficulty(value) {
 
     MIX_BUTTON.style.opacity = '1';
     MIX_BUTTON.style.pointerEvents = 'auto';
+
     // getCardSet();
     //DEBUG
     console.log(currentDifficult);
@@ -188,6 +205,7 @@ function getGameDeck() {
     let mixedSecond = mixDeck(secondSet);
     let mixedThird = mixDeck(thirdSet);
 
+
     gameDeck = [].concat(mixedThird, mixedSecond, mixedFirst);
 
     PHASE_CONTAINER.style.opacity = '1';
@@ -201,6 +219,22 @@ function getGameDeck() {
     UNFLIP_CARD.style.opacity = '1';
     UNFLIP_CARD.style.pointerEvents = 'auto';
     GAME_CARD.style.backgroundImage = `url('')`;
+
+    let trackFirst = getcardSum(firstSet);
+    let trackSecond = getcardSum(secondSet);
+    let trackThird = getcardSum(thirdSet);
+
+    FIRST_PHASE.querySelector('.phase-green').textContent = trackFirst.green;
+    FIRST_PHASE.querySelector('.phase-brown').textContent = trackFirst.brown;
+    FIRST_PHASE.querySelector('.phase-blue').textContent = trackFirst.blue;
+
+    SECOND_PHASE.querySelector('.phase-green').textContent = trackSecond.green;
+    SECOND_PHASE.querySelector('.phase-brown').textContent = trackSecond.brown;
+    SECOND_PHASE.querySelector('.phase-blue').textContent = trackSecond.blue;
+
+    THIRD_PHASE.querySelector('.phase-green').textContent = trackThird.green;
+    THIRD_PHASE.querySelector('.phase-brown').textContent = trackThird.brown;
+    THIRD_PHASE.querySelector('.phase-blue').textContent = trackThird.blue;
     //DEBUG
     console.log('Итоговый набор:')
     console.log(gameDeck);
@@ -317,13 +351,33 @@ function mixDeck(deck) {
     return resultDeck;
 }
 
+function getcardSum(deck) {
+    let result = {
+        green: 0,
+        brown: 0,
+        blue: 0
+    }
+
+    deck.forEach((value) => {
+        result[value.color]++;
+    });
+
+    return result;
+}
+
 function showCard() {
     GAME_CARD.style.backgroundImage = `url('${gameDeck[gameDeck.length - 1]['cardFace']}')`;
     gameDeck.pop();
 
+
+
     if (gameDeck.length == 0) {
         UNFLIP_CARD.style.opacity = '0';
         UNFLIP_CARD.style.pointerEvents = 'none';
+
+        MIX_BUTTON.style.opacity = '1';
+        MIX_BUTTON.style.pointerEvents = 'auto'; 
+        MIX_BUTTON.textContent = "Замешать новую колоду";   
     }
 }
 
